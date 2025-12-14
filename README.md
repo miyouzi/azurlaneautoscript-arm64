@@ -14,7 +14,7 @@
 
 ![img](screenshot/%7BDC1D817F-D47F-4A9F-AEC0-05E5809CF0C1%7D)
 
- 因此本镜像改用了 Ubuntu 24.04 作为基础镜像，并在此基础上准备好 AzurLaneAutoScript 环境。
+因此本镜像改用了 Ubuntu 24.04 作为基础镜像，并在此基础上准备好 AzurLaneAutoScript 环境。
 
 MAA可用性测试如下：
 
@@ -31,7 +31,7 @@ MAA可用性测试如下：
 ### 一条命令启动
 
 ```bash
-sudo docker run -d --restart=unless-stopped -p 22267:22267 --name alas -v /data/azurlaneautoscript-arm64:/app miyouzi/azurlaneautoscript-arm64:1.0
+sudo docker run -d --restart=unless-stopped -p 22267:22267 --name alas -v /data/azurlaneautoscript-arm64:/app miyouzi/azurlaneautoscript-arm64:latest
 ```
 
 ### Compose 启动
@@ -39,7 +39,7 @@ sudo docker run -d --restart=unless-stopped -p 22267:22267 --name alas -v /data/
 ```yaml
 services:
   alas:
-    image: miyouzi/azurlaneautoscript-arm64:1.0
+    image: miyouzi/azurlaneautoscript-arm64:latest
     container_name: alas
     restart: unless-stopped
     ports:
@@ -62,7 +62,7 @@ services:
 **命令启动：**
 
 ```bash
-sudo docker run -e ALAS_REPO=https://gitee.com/TYCYG/AzurLaneAutoScript.git -d --restart=unless-stopped -p 22267:22267 --name alas -v /data/azurlaneautoscript-arm64:/app miyouzi/azurlaneautoscript-arm64:1.0
+sudo docker run -e ALAS_REPO=https://gitee.com/TYCYG/AzurLaneAutoScript.git -d --restart=unless-stopped -p 22267:22267 --name alas -v /data/azurlaneautoscript-arm64:/app miyouzi/azurlaneautoscript-arm64:latest
 ```
 
 **Compose 启动：**
@@ -70,7 +70,7 @@ sudo docker run -e ALAS_REPO=https://gitee.com/TYCYG/AzurLaneAutoScript.git -d -
 ```yaml
 services:
   alas:
-    image: miyouzi/azurlaneautoscript-arm64:1.0
+    image: miyouzi/azurlaneautoscript-arm64:latest
     container_name: alas
     restart: unless-stopped
     environment:
