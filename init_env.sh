@@ -4,9 +4,17 @@
 echo -e "\n ========== Installing Foundational Software ========== \n"
 apt-get update
 apt-get install -y --no-install-recommends \
-	software-properties-common build-essential \
+	software-properties-common build-essential tzdata \
 	curl git adb libgomp1 \
 	openssh-client
+
+# 配置默认时区
+TZ_VALUE="${TZ:-Asia/Shanghai}"
+ZONEINFO="/usr/share/zoneinfo/${TZ_VALUE}"
+echo "$TZ_VALUE" > /etc/timezone
+ln -fs "$ZONEINFO" /etc/localtime
+dpkg-reconfigure --frontend noninteractive tzdata
+echo -e "\n ========== Completion time configuration, current time: `date` ========== \n"
 
 # 添加 deadsnakes PPA 来安装 Python 3.7
 echo -e "\n ========== Installing Python 3.7 ========== \n"

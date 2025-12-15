@@ -11,8 +11,10 @@ ENV PATH="/opt/conda/bin:${PATH}"
 
 # 复制文件
 COPY --link *.sh /
-RUN chmod +x /*.sh
+COPY --link docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /*.sh /usr/local/bin/docker-entrypoint.sh
 # 部署ALAS运行环境 
 RUN /bin/bash -c /init_env.sh
 
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 CMD ["/bin/bash", "-c", "/start_alas.sh"]

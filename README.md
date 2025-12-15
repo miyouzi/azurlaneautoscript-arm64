@@ -56,13 +56,14 @@ services:
 | --------------- | -------------------------------------- | ---------------------------------------------- |
 | USE_GITHUB_REPO | 强制使用 ALAS 的 Github 地址           | Y                                              |
 | ALAS_REPO       | 自定义 ALAS 代码仓库地址（优先级最高） | https://gitee.com/TYCYG/AzurLaneAutoScript.git |
+| TZ              | 时区                                   | Asia/Shanghai                                  |
 
 使用环境变量启动示例：
 
 **命令启动：**
 
 ```bash
-sudo docker run -e ALAS_REPO=https://gitee.com/TYCYG/AzurLaneAutoScript.git -d --restart=unless-stopped -p 22267:22267 --name alas -v /data/azurlaneautoscript-arm64:/app miyouzi/azurlaneautoscript-arm64:latest
+sudo docker run -d --restart=unless-stopped -e ALAS_REPO=https://gitee.com/TYCYG/AzurLaneAutoScript.git -e TZ=Asia/Shanghai -p 22267:22267 --name alas -v /data/azurlaneautoscript-arm64:/app miyouzi/azurlaneautoscript-arm64:latest
 ```
 
 **Compose 启动：**
@@ -75,6 +76,7 @@ services:
     restart: unless-stopped
     environment:
       - ALAS_REPO=https://gitee.com/TYCYG/AzurLaneAutoScript.git
+      - TZ=Asia/Shanghai
     ports:
       - "22267:22267"
     volumes:
